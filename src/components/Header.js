@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     StyleSheet,
     Text,
@@ -9,17 +9,15 @@ import {
 
 import icon from '../../assets/imgs/icon.png'
 
-class Header extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.rowContainer}>
-                    <Image source={icon} style={styles.image} />
-                    <Text style={styles.title}>Insta Clone</Text>
-                </View>
+export default props => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.rowContainer}>
+                <Image source={icon} style={styles.image} />
+                <Text style={styles.title}>Insta Clone</Text>
             </View>
-        )
-    }
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -45,5 +43,3 @@ const styles = StyleSheet.create({
         fontSize: 28
     }
 })
-
-export default Header
