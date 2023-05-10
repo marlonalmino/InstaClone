@@ -3,28 +3,23 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 
 export default props => {
     // States
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    login = () => {
-        
-    }
-
     return (
         <View style={styles.container}>
+            <TextInput placeholder='Nome' style={styles.input}
+                autoFocus={true} value={name}
+                onChangeText={setName} />
             <TextInput placeholder='E-mail' style={styles.input}
-                autoFocus={true} keyboardType='email-address'
-                value={email} onChangeText={setEmail} />
+                keyboardType='email-address' value={email}
+                onChangeText={setEmail} />
             <TextInput placeholder='Senha' style={styles.input}
                 secureTextEntry={true} value={password}
                 onChangeText={setPassword} />
-
-            <TouchableOpacity onPress={login} 
-                style={styles.button}>
-                <Text style={styles.buttonText}>Entrar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => props.navigation.navigate('Register') } style={styles.button}>
-                <Text style={styles.buttonText}>Criar nova conta...</Text>
+            <TouchableOpacity onPress={ () => {} } style={styles.button} >
+                <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -34,12 +29,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     button: {
         marginTop: 30,
         padding: 10,
-        backgroundColor: '#4286f4'
+        backgroundColor: '#4286F4'
     },
     buttonText: {
         fontSize: 20,
@@ -52,5 +47,6 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 1,
         borderColor: '#333',
+        paddingLeft: 15
     }
 })
