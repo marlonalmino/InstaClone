@@ -5,11 +5,7 @@ import { Gravatar } from 'react-native-gravatar'
 import useUser from '../data/hooks/useUser'
 
 export default props => {
-    const { name, email } = useUser()
-
-    logout = () => {
-        props.navigation.navigate('Auth')
-    }
+    const { name, email, logout } = useUser()
 
     const options = { email, secure: true }
 
