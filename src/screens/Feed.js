@@ -4,34 +4,17 @@ import { StyleSheet, FlatList, View } from 'react-native'
 import Header from '../components/Header'
 import Post from '../components/Post'
 
+import useFeed from '../data/hooks/useFeed'
+
 export default props => {
-    state = {
-        posts: [{
-            id: Math.random(),
-            nickname: 'Rafael Pereira Filho',
-            email: 'rafaelpf@gmail.com',
-            image: require('../../assets/imgs/fence.jpg'),
-            comments: [{
-                nickname: 'John Ray Sheldon',
-                comment: 'Stunning!'
-            }, {
-                nickname: 'Wesley Andrade',
-                comment: 'Foto Massa! Onde foi tirada?'
-            }]
-        }, {
-            id: Math.random(),
-            nickname: 'Francisco Leandro Lima',
-            email: 'franciscoll@gmail.com',
-            image: require('../../assets/imgs/bw.jpg'),
-            comments: []
-        }]
-    }
+
+    const { posts } = useFeed()
 
     return (
         <View style={styles.container} >
             <Header />
             <FlatList 
-                data={this.state.posts}
+                data={posts}
                 keyExtractor={item => `${item.id}`}
                 renderItem={ ({ item }) => <Post key={item.id} {...item} /> }
             />
