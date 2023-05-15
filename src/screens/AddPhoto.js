@@ -23,6 +23,8 @@ export default props => {
     const { addPost } = useFeed()
     const { name, email } = useUser()
 
+    const isLogged = () => email != null && email.trim() != ''
+
     const pickImage = () => {
         launchImageLibrary({
             mediaType: 'photo',
@@ -75,17 +77,20 @@ export default props => {
                     <Image source={image} style={styles.image} />
                 </View>
                 <View style={styles.buttonRow}>
-                    <TouchableOpacity onPress={pickPhoto} style={styles.button}>
+                    <TouchableOpacity onPress={pickPhoto} disabled={!isLogged()}
+                        style={[styles.button, isLogged() ? {} : styles.buttonDisabled]} >
                         <Text style={styles.buttonText} >Tirar uma foto</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={pickImage} style={styles.button} >
+                    <TouchableOpacity onPress={pickImage} disabled={!isLogged()}
+                        style={[styles.button, isLogged() ? {} : styles.buttonDisabled]} >
                         <Text style={styles.buttonText} >Escolha a foto</Text>
                     </TouchableOpacity>
                 </View>
                 <TextInput placeholder="Algum comentário para a foto?"
                     style={styles.input} value={comment}
-                    onChangeText={setComment} />
-                <TouchableOpacity onPress={save} style={styles.button}>
+                    onChangeText={setComment} editable={isLogged()} />
+                <TouchableOpacity onPress={save} disabled={!isLogged()}
+                        style={[styles.button, isLogged() ? {} : styles.buttonDisabled]} >
                     <Text style={styles.buttonText}>Salvar</Text>
                 </TouchableOpacity>
             </View>
@@ -123,6 +128,9 @@ const styles = StyleSheet.create({
         marginTop: 30,
         padding: 10,
         backgroundColor: '#4286F4'
+    },
+    buttonDisabled: {
+        backgroundColor: '#666'
     },
     buttonText: {
         fontSize: 20,
