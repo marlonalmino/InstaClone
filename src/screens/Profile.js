@@ -2,18 +2,22 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 
+import useUser from '../data/hooks/useUser'
+
 export default props => {
+    const { name, email } = useUser()
+
     logout = () => {
         props.navigation.navigate('Auth')
     }
 
-    const options = { email: 'fulanodetal@gmail.com', secure: true }
+    const options = { email, secure: true }
 
     return (
         <View style={styles.container} >
             <Gravatar options={options} style={styles.avatar} />
-            <Text style={styles.nickname}>Fulano de Tal</Text>
-            <Text style={styles.email}>fulanodetal@gmail.com</Text>
+            <Text style={styles.nickname}>{ name }</Text>
+            <Text style={styles.email}>{ email }</Text>
             <TouchableOpacity onPress={logout} 
                 style={styles.button}>
                 <Text style={styles.buttonText}>Sair</Text>

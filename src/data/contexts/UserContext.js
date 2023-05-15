@@ -7,12 +7,17 @@ export const UserProvider = ({ children }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
 
-    const feedInternalContext = {
-        name, email
+    const userInternalContext = {
+        name, 
+        email,
+        login: function(email, password) {
+            setName('Temporario')
+            setEmail(email)
+        }
     }
 
     return (
-        <UserContext.Provider value={feedInternalContext}>
+        <UserContext.Provider value={userInternalContext}>
             {children}
         </UserContext.Provider>
     )
