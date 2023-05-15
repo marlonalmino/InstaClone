@@ -5,16 +5,24 @@ import {
     StyleSheet, 
     TextInput, 
     TouchableWithoutFeedback as TWF, 
-    Alert} from 'react-native'
+} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-export default props => {
+import useUser from '../data/hooks/useUser'
+import useFeed from '../data/hooks/useFeed'
+
+export default ({ postId }) => {
     // States
     const [comment, setComment] = useState('')
     const [editMode, setEditMode] = useState(false)
 
+    const { addComment } = useFeed()
+    const { name: nickname } = useUser()
+
     handleAddComment = () => {
-        Alert.alert('Adicionado!', comment)
+        addComment(postId, {nickname, comment})
+        setComment('')
+        setEditMode(false)
     }
 
     let commentArea = null

@@ -9,7 +9,6 @@ import {
     Dimensions,
     Platform,
     ScrollView,
-    Alert
 } from "react-native"
 import { launchCamera, launchImageLibrary } from "react-native-image-picker"
 

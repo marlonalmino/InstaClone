@@ -12,7 +12,7 @@ export default props => {
             <Author email={props.email} 
                 nickname={props.nickname} />
             <Comments comments={props.comments} />
-            <AddComment />
+            <AddComment postId={props.id} />
         </View>
     )
 }
