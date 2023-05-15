@@ -2,8 +2,17 @@
  * @format
  */
 
+import React from 'react';
 import {AppRegistry} from 'react-native';
-import Navigator from './src/Navigator';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Navigator);
+import Navigator from './src/Navigator';
+import { FeedProvider } from './src/data/contexts/FeedContext'
+
+const Root = () => (
+    <FeedProvider>
+        <Navigator />
+    </FeedProvider>
+)
+
+AppRegistry.registerComponent(appName, () => Root);
