@@ -10,6 +10,8 @@ import Profile from './screens/Profile'
 import Login from './screens/Login'
 import Register from './screens/Register'
 
+import useUser from './data/hooks/useUser'
+
 const Tab = createBottomTabNavigator()
 const SwitchStack = createStackNavigator()
 const AuthStack = createStackNavigator()
@@ -21,6 +23,7 @@ const routeIcon = {
 }
 
 export default props => {
+    const { email } = useUser()
 
     const Auth = () => (
         <AuthStack.Navigator initialRouteName='Login'>
@@ -31,8 +34,11 @@ export default props => {
 
     const AuthOrProfile = () => (
         <SwitchStack.Navigator screenOptions={{ headerShown: false }}>
-            <SwitchStack.Screen name="Home" component={Profile} />
-            <SwitchStack.Screen name="Auth" component={Auth} />
+            {email ?
+                <SwitchStack.Screen name="Home" component={Profile} />
+            :
+                <SwitchStack.Screen name="Auth" component={Auth} />
+            }
         </SwitchStack.Navigator>
     )
 
